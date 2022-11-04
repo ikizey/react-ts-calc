@@ -1,16 +1,14 @@
 type action = {
   name: string;
   color: 'primary' | 'secondary' | 'success';
-  xs: 3 | 6;
+  xs: number;
 };
 const primary = 'primary';
 const secondary = 'secondary';
 const success = 'success';
 
 export const buttons: action[] = [
-  { name: 'AC', color: secondary, xs: 3 },
-  { name: '+/-', color: secondary, xs: 3 },
-  { name: '%', color: secondary, xs: 3 },
+  { name: 'AC', color: secondary, xs: 9 },
   { name: '/', color: secondary, xs: 3 },
 
   { name: '7', color: primary, xs: 3 },
@@ -29,6 +27,6 @@ export const buttons: action[] = [
   { name: '+', color: secondary, xs: 3 },
 
   { name: '0', color: primary, xs: 6 },
-  { name: ',', color: secondary, xs: 3 },
+  { name: '.', color: secondary, xs: 3 },
   { name: '=', color: success, xs: 3 },
 ];
