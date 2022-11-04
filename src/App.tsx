@@ -8,7 +8,7 @@ import { buttons } from './data/buttons';
 const initialResult = '0';
 
 const evaluate = (formula: string) => {
-  if (formula === '-') {
+  if (formula.endsWith('-')) {
     return formula;
   }
   if (formula.endsWith(' ')) {
@@ -45,20 +45,24 @@ const resultReducer = (state: string, action: string) => {
         }
       }
 
+      if (state === '-') {
+        return '0 ' + action + ' ';
+      }
+      if (state.endsWith(' -')) {
+        return state.slice(0, -4) + ' ' + action + ' ';
+      }
+      if (state.endsWith(' ')) {
+        return state.slice(0, -3) + ' ' + action + ' ';
+      }
+      if (state.endsWith(' 0.')) {
+        return state.slice(0, -5) + ' ' + action + ' ';
+      }
+      if (state.endsWith('.')) {
+        return state.slice(0, -1) + ' ' + action + ' ';
+      }
       if (state.split(' ').length === 3) {
         return evaluate(state) + ' ' + action + ' ';
       }
-
-      if (state === '-') {
-        return '0 ' + action + ' ';
-      } else if (state.endsWith(' -')) {
-        return state.slice(0, -4) + ' ' + action + ' ';
-      } else if (state.endsWith(' ')) {
-        return state.slice(0, -3) + ' ' + action + ' ';
-      } else if (state.endsWith('.')) {
-        return state.slice(0, -1) + ' ' + action + ' ';
-      }
-
       return state + ' ' + action + ' ';
     }
 
