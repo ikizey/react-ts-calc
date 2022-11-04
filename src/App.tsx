@@ -4,7 +4,7 @@ import './App.css';
 import CButton from './components/CButton';
 import Output from './components/Output';
 import { buttons } from './data/buttons';
-import { useResult } from './useResult';
+import { useResult } from './hooks/useResult';
 
 function App() {
   const [result, setResult] = useResult();
