@@ -1,8 +1,18 @@
-import { Button, Card, Grid, Typography, CardContent } from '@mui/material';
-import React from 'react';
+import { Card, Grid, CardContent } from '@mui/material';
+import React, { MouseEvent, useState } from 'react';
 import './App.css';
+import CButton from './components/CButton';
+import Output from './components/Output';
+import { buttons } from './data/buttons';
 
 function App() {
+  const [result, setResult] = useState('0');
+
+  const clickHandle = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    setResult(prevResult => prevResult + event.currentTarget.innerText);
+  };
+
   return (
     <Card
       sx={{
@@ -15,116 +25,17 @@ function App() {
       <CardContent>
         <Grid container spacing={1}>
           <Grid item xs={12}>
-            <Typography
-              sx={{
-                fontSize: '24px',
-
-                fontWeight: 700,
-                padding: 1,
-                border: '1px solid #1976d2',
-                borderRadius: '10px',
-              }}
-              align='right'
-              noWrap={true}
-            >
-              0
-            </Typography>
+            <Output value={result} />
           </Grid>
-          <Grid item xs={3}>
-            <Button variant='contained' color='warning' fullWidth>
-              AC
-            </Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button variant='contained' color='secondary' fullWidth>
-              +/-
-            </Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button variant='contained' color='secondary' fullWidth>
-              %
-            </Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button variant='contained' color='secondary' fullWidth>
-              /
-            </Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button variant='contained' fullWidth>
-              9
-            </Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button variant='contained' fullWidth>
-              8
-            </Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button variant='contained' fullWidth>
-              7
-            </Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button variant='contained' color='secondary' fullWidth>
-              x
-            </Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button variant='contained' fullWidth>
-              6
-            </Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button variant='contained' fullWidth>
-              5
-            </Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button variant='contained' fullWidth>
-              4
-            </Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button variant='contained' color='secondary' fullWidth>
-              -
-            </Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button variant='contained' fullWidth>
-              3
-            </Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button variant='contained' fullWidth>
-              2
-            </Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button variant='contained' fullWidth>
-              1
-            </Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button variant='contained' color='secondary' fullWidth>
-              +
-            </Button>
-          </Grid>
-          <Grid item xs={6}>
-            <Button variant='contained' fullWidth>
-              0
-            </Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button variant='contained' fullWidth>
-              ,
-            </Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button variant='contained' color='success' fullWidth>
-              =
-            </Button>
-          </Grid>
+          {buttons.map(button => (
+            <CButton
+              key={button.name}
+              name={button.name}
+              color={button.color}
+              xs={button.xs}
+              clickHandle={clickHandle}
+            />
+          ))}
         </Grid>
       </CardContent>
     </Card>
