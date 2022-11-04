@@ -1,3 +1,5 @@
+import { useReducer } from 'react';
+
 const initialResult = '0';
 
 const evaluate = (formula: string) => {
@@ -16,7 +18,7 @@ const evaluate = (formula: string) => {
   return eval(temp).toString();
 };
 
-export const resultReducer = (state: string, action: string) => {
+const resultReducer = (state: string, action: string) => {
   switch (action) {
     case 'AC': {
       return initialResult;
@@ -92,4 +94,8 @@ export const resultReducer = (state: string, action: string) => {
     }
   }
   return state + action;
+};
+
+export const useResult = () => {
+  return useReducer(resultReducer, '0');
 };

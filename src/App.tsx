@@ -1,13 +1,13 @@
 import { Card, Grid, CardContent } from '@mui/material';
-import React, { MouseEvent, useReducer } from 'react';
+import React, { MouseEvent } from 'react';
 import './App.css';
 import CButton from './components/CButton';
 import Output from './components/Output';
 import { buttons } from './data/buttons';
-import { resultReducer } from './resultReducer';
+import { useResult } from './useResult';
 
 function App() {
-  const [result, setResult] = useReducer(resultReducer, '0');
+  const [result, setResult] = useResult();
 
   const clickHandle = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
