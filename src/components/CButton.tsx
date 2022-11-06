@@ -1,5 +1,5 @@
+import { MouseEvent } from 'react';
 import { Button, Grid } from '@mui/material';
-import React, { MouseEvent } from 'react';
 
 type CButtonProps = {
   name: string;
@@ -8,12 +8,7 @@ type CButtonProps = {
   clickHandle: (event: MouseEvent<HTMLButtonElement>) => void;
 };
 
-const CButton: React.FC<CButtonProps> = ({
-  name,
-  xs,
-  color,
-  clickHandle,
-}: CButtonProps) => {
+const CButton = ({ name, xs, color, clickHandle }: CButtonProps) => {
   return (
     <Grid item xs={xs}>
       <Button onClick={clickHandle} variant='contained' color={color} fullWidth>

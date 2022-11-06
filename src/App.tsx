@@ -1,9 +1,8 @@
 import { Card, Grid, CardContent } from '@mui/material';
 import React, { MouseEvent } from 'react';
 import './App.css';
-import CButton from './components/CButton';
 import Output from './components/Output';
-import { buttons } from './data/buttons';
+import Buttons from './components/Buttons';
 import { useResult } from './hooks/useResult';
 
 function App() {
@@ -28,15 +27,7 @@ function App() {
           <Grid item xs={12}>
             <Output value={result} />
           </Grid>
-          {buttons.map(button => (
-            <CButton
-              key={button.name}
-              name={button.name}
-              color={button.color}
-              xs={button.xs}
-              clickHandle={clickHandle}
-            />
-          ))}
+          <Buttons clickHandle={clickHandle} />
         </Grid>
       </CardContent>
     </Card>
