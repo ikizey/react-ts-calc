@@ -19,7 +19,6 @@ const Buttons = (props: ButtonsProps) => {
           clickHandle={props.clickHandle}
         />
       ))}
-      ;
     </React.Fragment>
   );
 };
