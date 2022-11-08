@@ -74,8 +74,8 @@ const resultReducer = (state: string, action: string) => {
     case '8':
     case '9':
     case '0': {
-      if (state === '0') {
-        return action;
+      if (state.endsWith('0')) {
+        return state.slice(0, -1) + action;
       }
       return state + action;
     }
